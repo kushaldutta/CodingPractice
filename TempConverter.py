@@ -17,6 +17,7 @@ while value.lower() == "yes":
     #if user didn't type '1' or '2' for the first question
     else:
         print("error")
+    #asks user to repeat
     value = input("Do you want to do more conversions: ")
 
 
