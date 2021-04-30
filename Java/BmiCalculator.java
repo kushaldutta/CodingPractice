@@ -3,7 +3,8 @@ import java.util.Scanner;
 public class BmiKDa3 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        double bmi, heightCm, weightKg;
+        double heightCm, weightKg;
+		final double bmi;
         
         System.out.print("Enter Height: "); 
         heightCm = scanner.nextDouble(); 
@@ -12,6 +13,7 @@ public class BmiKDa3 {
         weightKg = scanner.nextDouble(); 
         
         bmi = ( weightKg / heightCm / heightCm ) * 10000;
+		
         System.out.printf("Your BMI is %.2f \n", bmi); 
         if (bmi < 18.5) {
             System.out.println("You are underweight");
