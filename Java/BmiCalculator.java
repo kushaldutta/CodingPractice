@@ -3,8 +3,7 @@ import java.util.Scanner;
 public class BmiKDa3 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        double heightCm, weightKg;
-		final double bmi;
+		final double bmi, heightCm, weightKg;
         
         System.out.print("Enter Height: "); 
         heightCm = scanner.nextDouble(); 
