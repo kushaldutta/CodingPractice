@@ -27,6 +27,11 @@ public class PlayerStats {
         System.out.println(name + " has " + pointsCompared + " more points, " + reboundsCompared 
                 + " more rebounds, and " + assistsCompared + " more assists than Zion in his career\n");
     }
+	
+    public int AddPoints(int addPoints) {
+        System.out.println("Zion scored " + addPoints + " points.");
+        return addPoints;
+    }	
     
     public static void main(String[] args) {
         PlayerStats zion = new PlayerStats("Zion Williamson", 200.66, 127.006);
@@ -40,6 +45,9 @@ public class PlayerStats {
         PlayerStats lebron = new PlayerStats("LeBron James", 205.74, 113.398);
         lebron.bmi();    
         lebron.stats(35299, 9736, 9676);
+		
+		careerPointsZion += zion.AddPoints(32);
+        System.out.println("Zion now has " + careerPointsZion + " points.");
         
         
     }
