@@ -7,9 +7,13 @@ class List {
   public static void main(String[] args) {
     ArrayList<String> toDos = new ArrayList<String>();
     toDos.add("Finish Homework");
-    toDos.add("Practice Coding");
+    toDos.add("Practice Tuba");
     toDos.add(1, "Work Out");
     toDos.add("Clean Room");
+
+	for (toDo : toDos) {
+		System.out.println(toDo);
+	}
 
     System.out.println(toDos);
     System.out.println(toDos.get(1));
