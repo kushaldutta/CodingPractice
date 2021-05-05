@@ -36,6 +36,6 @@ public class RandomNumber2 {
             System.out.println("Do you want to play again? Enter 'yes' or 'no': ");
             repeat = scanner.nextLine();
         
-        } while (repeat.equals("yes"));
+        } while (repeat.equalsIgnoreCase("yes"));
     }
 }
