@@ -1,58 +1,36 @@
-// calculates grade using percentage in subcategories
+// calculates grade using percentage in categories
 
 import java.util.Scanner;
 
 public class GradeCalculator {
+    static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
-        double total1, earned1, weight1, total2 = 1, earned2 = 0, 
-        weight2 = 0, total3 = 1, earned3 = 0, weight3 = 0, totalWeight,
-        percent1, percent2, percent3, total;
-        String advance;
-        Scanner scanner = new Scanner(System.in);
+        double grade;
+        double sub1, sub2, sub3, sub4, sub5;
         
-        System.out.print("What percentage is the first category worth? ");
-        weight1 = scanner.nextDouble();
-        System.out.print("How many points are in first category? ");
-        total1 = scanner.nextDouble();
-        System.out.print("How many points have you earned in the first category? ");
-        earned1 = scanner.nextDouble();
+        System.out.print("What is the total weight (all weight percentages added)? ");
+        double totalWeight = scanner.nextDouble();
+        System.out.println("Please enter 0 for total points, earned points, and weight if there are no more categories");
         
-        scanner.nextLine();
+        sub1 = subPercentage(); sub2 = subPercentage(); sub3 = subPercentage(); sub4 = subPercentage(); sub5 = subPercentage();
         
-        System.out.println("Are there more categories? Enter 'yes' or 'no'");
-        advance = scanner.nextLine();
+        grade = (sub1 + sub2 + sub3 + sub4 + sub5 ) / ( totalWeight / 100 );
+        System.out.println("Your grade is " + grade);
+    }
+    
+    public static double subPercentage() {
+        System.out.print("What percentage is this category worth? ");
+        double weight = scanner.nextDouble();
         
-        if (advance.equals("yes")) {
-            System.out.print("What percentage is this category worth? ");
-            weight2 = scanner.nextDouble();
-            System.out.print("How many points are in this category? ");
-            total2 = scanner.nextDouble();
-            System.out.print("How many points have you earned in this category? ");
-            earned2 = scanner.nextDouble();
-            
-            scanner.nextLine();
-            
-            System.out.println("Are there any more categories?");
-            advance = scanner.nextLine();
-
-            if (advance.equals("yes")) {
-                System.out.print("What percentage is this category worth? ");
-                weight3 = scanner.nextDouble();
-                System.out.print("How many points are in this category? ");
-                total3 = scanner.nextDouble();
-                System.out.print("How many points have you earned in this category? ");
-                earned3 = scanner.nextDouble();
-            }
-        }
+        System.out.print("How many points are in this category? ");
+        double total = scanner.nextDouble();
+        if (total == 0)
+            total = 1;
         
-
+        System.out.print("How many points have you earned in this category? ");
+        double earned = scanner.nextDouble();
         
-        totalWeight = ( weight1 + weight2 + weight3 ) / 100;
-        percent1 = earned1 / total1;
-        percent2 = earned2 / total2; 
-        percent3 = earned3 / total3;
-        total = ( percent1 * weight1 + percent2 * weight2 + percent3 * weight3 ) / totalWeight ;
-
-        System.out.print("Your grade is " + total);
+        double percent = earned / total * weight;
+        return percent;
     }
 }
