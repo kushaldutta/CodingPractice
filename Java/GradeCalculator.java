@@ -1,19 +1,20 @@
-// calculates grade using percentage in categories
+// calculates grade using percentage in categories with other options
 
 import java.util.Scanner;
 
 public class GradeCalculator {
     
-    static Scanner scanner = new Scanner(System.in);
+    Scanner scanner = new Scanner(System.in);
     static int amountOfCategories;
     static double[] grades;
     static double[] weight;
+    static double[] totalPoints;
+    static double[] earnedPoints;
     
     public static void main(String[] args) {
         GradeCalculator Freshman = new GradeCalculator();
-        Freshman.Percentage();
-        System.out.printf("%nYour grade is %.3f", Freshman.Calculate());
-        System.out.println("%");
+        Freshman.Points();
+        Freshman.AddGrade();
     }
     
     /**
@@ -24,29 +25,52 @@ public class GradeCalculator {
         amountOfCategories = scanner.nextInt();
         grades = new double[amountOfCategories];
         weight = new double[amountOfCategories];
+        totalPoints = new double[grades.length];
+        earnedPoints = new double[grades.length];
     }
       
     /**
-     * Percentage method gets percentage and weight of each assignment category
+     * Points method gets the points and weight of each assignment category
      */
-    public void Percentage() {
+    public void Points() {
         for (int i = 0; i < grades.length; i++) {
-            double totalPoints;
-            double earnedPoints;
-            
             System.out.println("\nCategory #" + (i + 1));
             
             System.out.print("How many total points are in this category? ");
-            totalPoints = scanner.nextDouble();
+            totalPoints[i] = scanner.nextDouble();
             
             System.out.print("How many points have you earned in this category? ");
-            earnedPoints = scanner.nextDouble();
+            earnedPoints[i] = scanner.nextDouble();
             
             System.out.print("What percentage is this category worth? ");
             weight[i] = scanner.nextDouble();
             
-            grades[i] = earnedPoints / totalPoints;
+            if (i == (grades.length - 1)) {
+                FindPercentage();
+                System.out.printf("%nYour grade is %.3f", Calculate());
+                System.out.println("%\n");
+            }
         }
+    }
+    
+    /**
+     * FindPercentage method uses the points to find percentage of each assignment category
+     */
+    public void FindPercentage() {
+        for (int i = 0; i < grades.length; i++)
+            grades[i] = earnedPoints[i] / totalPoints[i];
+    }
+    
+    /**
+     * TotalWeight method adds the weight of all categories
+     * @return totalWeight sum of weights
+     */
+    public double TotalWeight() {
+        double totalWeight = 0;
+        for (int i = 0; i < weight.length; i++) {
+            totalWeight += weight[i];
+        }
+        return totalWeight;
     }
     
     /**
@@ -56,21 +80,29 @@ public class GradeCalculator {
     public double Calculate() {
         double subPercent = 0;
         for (int i = 0; i < grades.length; i++) {
-            subPercent += (grades[i] * 100 * weight[i]) / totalWeight();
+            subPercent += (grades[i] * 100 * weight[i]) / TotalWeight();
         }
         return subPercent;
     }
     
-    /**
-     * totalWeight method adds the weight of all categories
-     * @return totalWeight sum of weights
+    /** 
+     * AddGrade method adds a grade into a specific assignment category
      */
-    public double totalWeight() {
-        double totalWeight = 0;
-        for (int i = 0; i < weight.length; i++) {
-            totalWeight += weight[i];
-        }
-        return totalWeight;
+    public void AddGrade() {
+        int category;
+        double newGrade;
+        System.out.print("Which category # is this grade in? ");
+        category = scanner.nextInt();
+        
+        System.out.print("Enter the total points of this assignment: ");
+        totalPoints[category - 1] += scanner.nextDouble();
+        
+        System.out.print("Enter the points earned from this assignment: ");
+        earnedPoints[category - 1] += scanner.nextDouble();   
+        
+        FindPercentage();
+        System.out.printf("Your new grade is %.3f", Calculate());
+        System.out.println("%\n");
     }
 }
 
@@ -88,9 +120,14 @@ How many points have you earned in this category? 7.8
 What percentage is this category worth? 30
 
 Category #3
-How many total points are in this category? 50
-How many points have you earned in this category? 48
+How many total points are in this category? 40
+How many points have you earned in this category? 38
 What percentage is this category worth? 50
 
-Your grade is 88.900%
+Your grade is 88.400%
+
+Which category # is this grade in? 3
+Enter the total points of this assignment: 10
+Enter the points earned from this assignment: 10
+Your new grade is 88.900%
 */
