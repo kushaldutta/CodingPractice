@@ -6,10 +6,10 @@ public class GradeCalculator {
     
     Scanner scanner = new Scanner(System.in);
     int amountOfCategories;
-    static double[] grades;
-    static double[] weight;
-    static double[] totalPoints;
-    static double[] earnedPoints;
+    double[] grades;
+    double[] weight;
+    double[] totalPoints;
+    double[] earnedPoints;
     
     public static void main(String[] args) {
         System.out.println("Freshman's Grades:");
